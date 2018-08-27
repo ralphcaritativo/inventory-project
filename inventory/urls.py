@@ -6,5 +6,6 @@ from products import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.home, name = 'home')
+    path('', views.login, name = 'login'),
+    path('dashboard/', views.dashboard, name = 'dashboard'),
 ]
