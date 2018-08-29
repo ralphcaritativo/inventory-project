@@ -1,0 +1,59 @@
+{% extends 'base_login.html' %}
+
+
+{% block main_content %}
+<span class="login100-form-title p-b-26">
+  New Account
+</span>
+<div class="text-center text-danger">
+  {% if error %}
+  {{ error }}
+  {% endif %}
+  </span>
+</div>
+<span>
+
+<br>
+<br>
+<form class="login100-form validate-form" action="{% url 'signup' %}" method="POST">
+{% csrf_token %}
+
+  <div class="wrap-input100 validate-input" data-validate="Enter user name">
+    <input class="input100" type="text" name="username">
+    <span class="focus-input100" data-placeholder="User name"></span>
+  </div>
+
+  <div class="wrap-input100 validate-input" data-validate="Enter password">
+    <span class="btn-show-pass">
+      <i class="zmdi zmdi-eye"></i>
+    </span>
+    <input class="input100" type="password" name="password1">
+    <span class="focus-input100" data-placeholder="Password"></span>
+  </div>
+
+  <div class="wrap-input100 validate-input" data-validate="Not match">
+    <span class="btn-show-pass">
+      <i class="zmdi zmdi-eye"></i>
+    </span>
+    <input class="input100" type="password" name="password2">
+    <span class="focus-input100" data-placeholder="Confirm Password"></span>
+  </div>
+
+  <div class="container-login100-form-btn">
+    <div class="wrap-login100-form-btn">
+      <div class="login100-form-bgbtn"></div>
+      <button class="login100-form-btn">
+        Create
+      </button>
+    </div>
+  </div>
+
+  <div class="text-center p-t-115">
+
+  <a class="txt2" href="{% url 'login' %}">
+    Already have an account
+  </a>
+</div>
+</form>
+
+{% endblock %}
