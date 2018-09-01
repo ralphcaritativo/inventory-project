@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+
+
+
+
+{% block product_nav %}
+<li class="active">
+    <a href="{% url 'list_products' %}"><i class="fa fa-fw fa-bar-chart-o"></i> Products</a>
+</li>
+{% endblock %}
+
+{% block header %}
+  <h1 class="page-header">
+      Create Product
+  </h1>
+  {% endblock %}
+
+{% block content %}
+
+<form method = "POST">
+  {% csrf_token %}
+  <!--
+    ---------------------- NAME ----------------------
+  -->
+  <div class="form-group">
+    <label class="col-form-label">Product name:</label>
+    <input type="text" class="form-control" name = "name">
+  </div>
+
+  <!--
+    ---------------------- DESCRIPTION ----------------------
+  -->
+  <div class="form-group">
+    <label class="col-form-label">Description:</label>
+    <textarea class="form-control" name="description" rows="5" cols="80"></textarea>
+  </div>
+
+  <!--
+    ---------------------- SKU ----------------------
+  -->
+
+  <div class="form-group">
+    <label class="col-form-label">SKU:</label>
+    <input type="text" class="form-control" name="sku">
+  </div>
+
+  <!--
+    ---------------------- PRICE ----------------------
+  -->
+
+  <div class="form-group">
+    <label class="col-form-label">Price:</label>
+    <input type="number" class="form-control" value="0.00" min="0" step="any" name="price">
+  </div>
+
+  <!--
+    ---------------------- QUANTITY ----------------------
+  -->
+
+  <div class="form-group">
+    <label class="col-form-label">Quantity:</label>
+    <input type="number" class="form-control" value="0" min="0" name = "quantity">
+  </div>
+
+  <!--
+    ---------------------- IMAGE ----------------------
+  -->
+
+  <div class="form-group">
+    <label class="col-form-label">Image:</label>
+    <input type="file" class="form-control" name = "image">
+  </div>
+
+  <div class="footer pull-right">
+    <a  href="{% url 'list_products' %}" class="btn btn-secondary" role="button">Cancel</a>
+    <input type="submit" class="btn btn-primary" value="Save" />
+  </div>
+
+{% endblock %}

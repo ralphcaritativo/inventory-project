@@ -16,7 +16,7 @@ class Product(models.Model):
     price = models.DecimalField(default = 0.00, max_digits = 9, decimal_places = 2)
     quantity = models.IntegerField(default = 0)
     image = models.ImageField(upload_to = 'images/')
-    pub_date = models.DateTimeField()
+    # pub_date = models.DateTimeField()
 
     # status = models.CharField(max_length = 255, default = 'Inactive')
 

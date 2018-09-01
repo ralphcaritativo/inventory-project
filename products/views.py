@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from .models import Product
-from django.utils import timezone
+# from django.utils import timezone
 from .forms import ProductForm
 
 @login_required
@@ -11,27 +11,20 @@ def list_products(request):
 
 @login_required
 def create_product(request):
-    if request.method == "POST":
-        if request.POST['name'] and request.POST['description'] and request.POST['sku'] and request.POST['price'] and request.POST['quantity'] and request.FILES['image']:
-            product = Product()
-            product.name = request.POST['name']
-            product.description = request.POST['description']
-            product.sku = request.POST['sku']
-            product.price = request.POST['price']
-            product.quantity = request.POST['quantity']
-            product.image = request.FILES['image']
-            product.pub_date = timezone.datetime.now()
-            product.save()
-            return redirect('list_products')
-        else:
-            return render(request, 'products/create.html', {'error': 'All fields are required.'})
-    else:
-        return render(request, 'products/create.html')
+    form = ProductForm(request.POST, request.FILES or None)
+    if form.is_valid():
+        # product.pub_date = timezone.now()
+        form.save()
+        return redirect('list_products')
+    return render(request, 'products/create.html', {'form': form})
 
-    # form = ProductForm(request.POST or None)
-    #
-    # if form.is_valid():
-    #     form.save()
-    #     return redirect('list_products')
-    #
-    # return render(request, 'products/create.html', {'form': form})
+@login_required
+def update_product(request, id):
+    products = Product.objects.get(id = id)
+
+    form = ProductForm(request.POST or None, request.FILES or None, instance = products)
+    if form.is_valid():
+        form.save()
+        return redirect('list_products')
+
+    return render(request, 'products/create.html', {'form': form, 'products': products})
