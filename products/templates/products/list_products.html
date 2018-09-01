@@ -20,7 +20,6 @@
 <br>
 
 <div class="col-lg-10">
-    <h2>Manage Products</h2>
     <div class="table-responsive">
         <table class="table table-hover table-striped">
             <thead>
@@ -31,6 +30,7 @@
                     <th>Price</th>
                     <th>Quantity</th>
                    <th>Image</th>
+                   <th>Date Created</th>
                 </tr>
             </thead>
             <tbody>
@@ -42,6 +42,7 @@
                   <td class="text-right">{{ product.price }}</td>
                   <td class="text-right">{{ product.quantity }}</td>
                   <td><img src="{{ product.image.url }}" class="img-fluid" height="50px" width="50px"></td>
+                  <td>{{ product.pub_date_pretty }}</td>
                 </tr>
 
               {% endfor %}

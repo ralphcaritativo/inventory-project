@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from .models import Product
-# from django.utils import timezone
+from django.utils import timezone
 from .forms import ProductForm
 
 @login_required
@@ -13,10 +13,9 @@ def list_products(request):
 def create_product(request):
     form = ProductForm(request.POST, request.FILES or None)
     if form.is_valid():
-        # product.pub_date = timezone.now()
         form.save()
         return redirect('list_products')
-    return render(request, 'products/create.html', {'form': form})
+    return render(request, 'products/product_form.html', {'form': form})
 
 @login_required
 def update_product(request, id):
@@ -27,4 +26,4 @@ def update_product(request, id):
         form.save()
         return redirect('list_products')
 
-    return render(request, 'products/create.html', {'form': form, 'products': products})
+    return render(request, 'products/product_form.html', {'form': form, 'products': products})

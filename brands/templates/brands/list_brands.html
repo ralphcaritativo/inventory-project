@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block brand_nav %}
+<li class="active">
+    <a href="{% url 'list_brands' %}"><i class="fa fa-fw fa-bar-chart-o"></i> Brands</a>
+</li>
+{% endblock %}
+
+
+{% block header %}
+<h1 class="page-header">
+    Brand List
+</h1>
+{% endblock %}
+
+
+{% block content %}
+
+<a class="btn btn-primary" href="{% url 'brand_form' %}">Create Brand</a>
+<br>
+
+<div class="col-lg-10">
+    <div class="table-responsive table-fluid">
+        <table class="table table-hover table-striped">
+            <thead>
+                <tr>
+                    <th>Product Name</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+              {% for brand in brands %}
+                <tr >
+                  <td><a href="{% url 'update_brand' brand.id %}">{{ brand.name }} </a></td>
+                  <td>{% if brand.status == 0 %}
+                      Inactive
+                      {% elif brand.status == 1 %}
+                      Active
+                      {% else %}
+                      Not exists
+                      {% endif %}
+                  </td>
+
+                </tr>
+
+              {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

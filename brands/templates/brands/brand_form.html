@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+
+
+
+{% block brand_nav %}
+<li class="active">
+    <a href="{% url 'list_brands' %}"><i class="fa fa-fw fa-bar-chart-o"></i> Brands</a>
+</li>
+{% endblock %}
+
+{% block header %}
+  <h1 class="page-header">
+      Manage Brand
+  </h1>
+  {% endblock %}
+
+{% block content %}
+
+<form method = "POST">
+  {% csrf_token %}
+  {% for field in form.visible_fields %}
+    <div class="form-group">
+      {{ field.label_tag }}
+      {% render_field field class="form-control" %}
+      {% if field.help_text %}
+        <small class="form-text text-muted">{{ field.help_text }}</small>
+      {% endif %}
+    </div>
+  {% endfor %}
+  <div class="footer pull-right">
+    <a  href="{% url 'list_brands' %}" class="btn btn-secondary" role="button">Cancel</a>
+    <input type="submit" class="btn btn-primary" value="Save" />
+  </div>
+{% endblock %}
