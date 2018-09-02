@@ -84,6 +84,12 @@
                     </li>
                     {% endblock %}
 
+                    {% block category_nav %}
+                    <li>
+                        <a href="{% url 'list_category' %}"><i class="fa fa-fw fa-bar-chart-o"></i> Category</a>
+                    </li>
+                    {% endblock %}
+
                     {% block product_nav %}
                     <li>
                         <a href="{% url 'list_products' %}"><i class="fa fa-fw fa-bar-chart-o"></i> Products</a>
